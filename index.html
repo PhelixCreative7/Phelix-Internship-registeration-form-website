@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Phelix Creatives Registration</title>
+  <link rel="icon" href="final 1.png" type="image/x-icon"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #FFD417, #ffb347);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #1e1e1e;
+      overflow-x: hidden;
+    }
+
+    header {
+      width: 100%;
+      padding: 2rem 1rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header img {
+      height: 70px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    }
+
+    h1 {
+      margin-top: 1rem;
+      font-size: 2rem;
+      letter-spacing: 2px;
+      font-weight: 700;
+    }
+
+    .tabs {
+      margin: 2rem auto 1rem;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 0.8rem 1.5rem;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 12px;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: 0.3s ease;
+      color: #333;
+    }
+
+    .tab-btn.active {
+      background: #1e1e1e;
+      color: #fff;
+      transform: scale(1.05);
+    }
+
+    .tab-btn:hover {
+      transform: scale(1.03);
+    }
+
+    .content-container {
+      width: 90%;
+      max-width: 900px;
+      background: rgba(255,255,255,0.4);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      overflow: hidden;
+      display: none;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .content-container.active {
+      display: block;
+    }
+
+    iframe {
+      width: 100%;
+      height: 75vh;
+      border: none;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .tab-btn {
+        font-size: 0.9rem;
+        padding: 0.7rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="final 1.png" alt="Ashwagrid Logo" />
+    <h1>Phelix Creatives <br>  Internship Drive</h1>
+  </header>
+
+  <div class="tabs">
+    <button class="tab-btn active" id="showForm">📋 Registration</button>
+    <button class="tab-btn" id="showJD">📄 Job Description</button>
+  </div>
+
+  <div class="content-container active" id="formContainer">
+    <iframe
+      src="https://docs.google.com/forms/d/e/1FAIpQLSf8DgJGh-Znqav7eybjj-4MACUpxbjfLZaFzF-TsbG5UesTIw/viewform?embedded=true"
+      loading="lazy">
+      Loading…
+    </iframe>
+  </div>
+
+  <div class="content-container" id="pdfContainer">
+    <iframe id="pdfViewer"></iframe>
+  </div>
+
+  <script>
+    const showFormBtn = document.getElementById('showForm');
+    const showJdBtn = document.getElementById('showJD');
+    const formContainer = document.getElementById('formContainer');
+    const pdfContainer = document.getElementById('pdfContainer');
+    const pdfViewer = document.getElementById('pdfViewer');
+
+    const pdfUrl = 'https://docs.google.com/gview?embedded=true&url=' +
+      encodeURIComponent('https://docs.google.com/document/d/1gjLeMsynglCfYPhnClT5J16Z4At8GOEIs4PjEQKEUEs/export?format=pdf');
+
+    let jdLoaded = false;
+
+    showFormBtn.addEventListener('click', () => {
+      showFormBtn.classList.add('active');
+      showJdBtn.classList.remove('active');
+      formContainer.classList.add('active');
+      pdfContainer.classList.remove('active');
+    });
+
+    showJdBtn.addEventListener('click', () => {
+      showJdBtn.classList.add('active');
+      showFormBtn.classList.remove('active');
+      pdfContainer.classList.add('active');
+      formContainer.classList.remove('active');
+
+      if (!jdLoaded) {
+        pdfViewer.src = pdfUrl;
+        jdLoaded = true;
+      }
+    });
+  </script>
+
+</body>
+</html>
