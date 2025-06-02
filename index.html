@@ -41,6 +41,7 @@
       font-size: 2rem;
       letter-spacing: 2px;
       font-weight: 700;
+      text-align: center;
     }
 
     .tabs {
@@ -124,7 +125,7 @@
 
   <header>
     <img src="final 1.png" alt="Ashwagrid Logo" />
-    <h1>Phelix Creatives <br>  Internship Drive</h1>
+    <h1>Phelix Creatives <br> Internship Drive</h1>
   </header>
 
   <div class="tabs">
@@ -151,8 +152,8 @@
     const pdfContainer = document.getElementById('pdfContainer');
     const pdfViewer = document.getElementById('pdfViewer');
 
-    const pdfUrl = 'https://docs.google.com/gview?embedded=true&url=' +
-      encodeURIComponent('https://docs.google.com/document/d/1gjLeMsynglCfYPhnClT5J16Z4At8GOEIs4PjEQKEUEs/export?format=pdf');
+    // ✅ Use preview link instead of gview workaround
+    const pdfUrl = 'https://docs.google.com/document/d/19YO-8DoIDROT5l1oYtylQGRHLxDLkH9uEUZ4kpiZ1h4/preview';
 
     let jdLoaded = false;
 
